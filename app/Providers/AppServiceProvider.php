@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Contact;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        view()->composer("admin.includes.topnav",function($view){
+            $message=Contact::where("unread",0)->get();
+            $view->with("message",$message);
+        });
+        Paginator::useBootstrap();
     }
 }

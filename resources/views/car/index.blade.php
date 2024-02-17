@@ -1,0 +1,1 @@
+@extends("car.layouts.Homepage",["title"=>"CarRental"])
